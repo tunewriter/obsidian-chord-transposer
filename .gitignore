@@ -1,0 +1,28 @@
+# --- Dependencies & Logs ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Wir ignorieren main.js, da es released wird
+main.js
+# Falls TypeScript compiler eigenen output folder macht:
+/out-tsc/
+/dist/
+/tmp/
+
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# --- Obsidian & Plugin Dev ---
+.obsidian/
+# Den src Ordner ignorieren wir, da wir main.ts im Root nutzen
+src/
+test/
+
+# .pnp
+/.pnp
+.pnp.js

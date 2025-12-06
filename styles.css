@@ -1,0 +1,60 @@
+/* Container für die Transpose-Controls */
+.chord-transpose-control {
+    display: flex;
+    align-items: center;
+    margin-right: 8px; /* Abstand zu den anderen Icons */
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Der mittlere Wert (+2, -1 etc.) */
+.chord-transpose-value {
+    min-width: 24px;
+    text-align: center;
+    font-variant-numeric: tabular-nums; /* Verhindert Wackeln bei Zahlenänderung */
+    font-weight: bold;
+    color: var(--text-normal);
+}
+
+/* Die Buttons (erben von Obsidian clickable-icon) */
+.chord-transpose-btn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    color: var(--text-muted);
+}
+
+.chord-transpose-btn:hover {
+    background-color: var(--background-modifier-hover);
+    color: var(--text-normal);
+}
+
+/* Auf Handys (kleine Breite) etwas kompakter */
+@media screen and (max-width: 400px) {
+    .chord-transpose-control {
+        margin-right: 4px;
+        font-size: 0.7rem;
+    }
+}
+
+/* Eine Farbe, die oft für Akzente in Themes genutzt wird */
+.cm-smart-chord {
+    color: lightskyblue;
+    font-weight: 600;
+}
+
+/* ... bestehendes CSS ... */
+
+.chord-transpose-reset {
+    margin-right: 6px; /* Kleiner Abstand zu den Up/Down buttons */
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+.chord-transpose-reset:hover {
+    color: var(--text-error); /* Rot beim Hovern (optional, signalisiert "Achtung Reset") */
+    opacity: 1;
+}
