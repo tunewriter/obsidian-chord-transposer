@@ -1,8 +1,8 @@
 {
   "id": "chord-transposer",
   "name": "Chord Transposer",
-  "version": "1.1.3",
-  "minAppVersion": "0.15.0",
+  "version": "1.1.4",
+  "minAppVersion": "1.5.0",
   "description": "Automatically detect and transpose song chords in plain text lyrics without needing special formatting.",
   "authorUrl": "https://github.com/tunewriter",
   "isDesktopOnly": false

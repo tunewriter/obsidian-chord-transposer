@@ -111,8 +111,6 @@ export default class SmartChordsPlugin extends Plugin {
     private ignoreCacheUntil = 0;
 
     async onload() {
-        console.log('Loading Smart Chords Plugin');
-
         this.registerEditorExtension(chordHighlighterPlugin);
 
         // Initialize UI when workspace is ready
