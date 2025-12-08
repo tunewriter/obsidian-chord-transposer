@@ -15,10 +15,10 @@ const IGNORE_LIST = new Set([
 // Group 1: Root (A-G, optional #/b)
 // Group 2: Suffix (Valid chars: m, 0-9, +, #, b, M, dim... OR slash followed by digit like 6/9)
 // Group 3: Bass (Slash followed by A-G)
-const CHORD_REGEX = /^([A-G][#b]?)((?:[m0-9\+#bMdimnsujag°]|(?:\/[0-9]))*)(\/[A-G][#b]?)?$/;
+const CHORD_REGEX = /^([A-G][#b]?)((?:[m0-9+#bMdimnsujag°]|(?:\/[0-9]))*)(\/[A-G][#b]?)?$/;
 
 // Captures delimiters around tokens (parentheses, brackets, markdown syntax)
-const TOKEN_WRAPPER_REGEX = /^([\({\["'\*_]*)(.*?)([\)}\]"'\*_,\.:;?!]*)$/;
+const TOKEN_WRAPPER_REGEX = /^([({["'*_]*)(.*?)([)}\]"'*_,.:;?!]*)$/;
 
 class MusicLogic {
     private getNoteIndex(note: string): number {
@@ -171,9 +171,10 @@ export default class SmartChordsPlugin extends Plugin {
         const actionsContainer = view.containerEl.querySelector('.view-actions');
         if (!actionsContainer) return;
 
-        let controlContainer = actionsContainer.querySelector('.chord-transpose-control') as HTMLElement | null;
+        let controlContainer = actionsContainer.querySelector('.chord-transpose-control');
+
         if (!chordsFound) {
-            if (controlContainer) {
+            if (controlContainer instanceof HTMLElement) {
                 controlContainer.toggleClass('is-hidden', true);
             }
             return;
@@ -202,10 +203,14 @@ export default class SmartChordsPlugin extends Plugin {
         } else {
             // Update references and visibility
             this.currentTransposeValueSpan = controlContainer.querySelector('.chord-transpose-value');
-            controlContainer.toggleClass('is-hidden', false);
+            if (controlContainer instanceof HTMLElement) {
+                controlContainer.toggleClass('is-hidden', false);
+            }
 
-            const btnReset = controlContainer.querySelector('.chord-transpose-reset') as HTMLElement;
-            if (btnReset) btnReset.onclick = () => this.resetTranspose(view);
+            const btnReset = controlContainer.querySelector('.chord-transpose-reset');
+            if (btnReset instanceof HTMLElement) {
+                btnReset.onclick = () => this.resetTranspose(view);
+            }
         }
 
         this.syncValueFromFrontmatter(view.file);
@@ -221,7 +226,7 @@ export default class SmartChordsPlugin extends Plugin {
         }
 
         if (currentValue !== 0) {
-            await this.applyTranspose(view, -currentValue);
+            this.applyTranspose(view, -currentValue);
         }
     }
 
