@@ -7,8 +7,8 @@ const IGNORE_LIST = new Set([
     "CAB", "CAGE", "CAFE", "BEAD", "ACID", "AGED", "BABE", "DEAD", "DEED"
 ]);
 
-const CHORD_REGEX = /^([A-G][#b]?)((?:[m0-9\+#bMdimnsujag°]|(?:\/[0-9]))*)(\/[A-G][#b]?)?$/;
-const TOKEN_WRAPPER_REGEX = /^([\({\["'\*_]*)(.*?)([\)}\]"'\*_,\.:;?!]*)$/;
+const CHORD_REGEX = /^([A-G][#b]?)((?:[m0-9+#bMdimnsujag°]|(?:\/[0-9]))*)(\/[A-G][#b]?)?$/;
+const TOKEN_WRAPPER_REGEX = /^([({["'*_]*)(.*?)([)}\]"'*_,.:;?!]*)$/;
 
 function isChordLine(lineText: string): boolean {
     const tokens = lineText.trim().split(/\s+/);

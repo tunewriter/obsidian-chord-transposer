@@ -58,3 +58,7 @@
     color: var(--text-error); /* Rot beim Hovern (optional, signalisiert "Achtung Reset") */
     opacity: 1;
 }
+
+.is-hidden {
+    display: none !important;
+}

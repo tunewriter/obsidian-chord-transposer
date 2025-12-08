@@ -110,7 +110,7 @@ export default class SmartChordsPlugin extends Plugin {
 
     private ignoreCacheUntil = 0;
 
-    async onload() {
+    onload() {
         this.registerEditorExtension(chordHighlighterPlugin);
 
         // Initialize UI when workspace is ready
@@ -171,11 +171,10 @@ export default class SmartChordsPlugin extends Plugin {
         const actionsContainer = view.containerEl.querySelector('.view-actions');
         if (!actionsContainer) return;
 
-        let controlContainer = actionsContainer.querySelector('.chord-transpose-control') as HTMLElement;
-
+        let controlContainer = actionsContainer.querySelector('.chord-transpose-control') as HTMLElement | null;
         if (!chordsFound) {
             if (controlContainer) {
-                controlContainer.style.display = 'none';
+                controlContainer.toggleClass('is-hidden', true);
             }
             return;
         }
@@ -203,7 +202,7 @@ export default class SmartChordsPlugin extends Plugin {
         } else {
             // Update references and visibility
             this.currentTransposeValueSpan = controlContainer.querySelector('.chord-transpose-value');
-            controlContainer.style.display = 'flex';
+            controlContainer.toggleClass('is-hidden', false);
 
             const btnReset = controlContainer.querySelector('.chord-transpose-reset') as HTMLElement;
             if (btnReset) btnReset.onclick = () => this.resetTranspose(view);
@@ -246,7 +245,7 @@ export default class SmartChordsPlugin extends Plugin {
         this.currentTransposeValueSpan.innerText = `${prefix}${currentTranspose}`;
     }
 
-    async applyTranspose(view: MarkdownView, steps: number) {
+    applyTranspose(view: MarkdownView, steps: number) {
         const editor = view.editor;
         if (!editor || !view.file) return;
 
