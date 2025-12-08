@@ -216,7 +216,7 @@ export default class SmartChordsPlugin extends Plugin {
         this.syncValueFromFrontmatter(view.file);
     }
 
-    async resetTranspose(view: MarkdownView) {
+    resetTranspose(view: MarkdownView) {
         const file = view.file;
         if (!file) return;
 
